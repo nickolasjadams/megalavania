@@ -8,6 +8,16 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
+
+    /**
+     * Generate an avatar based off user email
+     */
+    public function gravatar($email)
+    {
+        $hash = md5(strtolower(trim($email)));
+        return "http://www.gravatar.com/avatar/$hash?d=retro";
+    }
+    
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,12 +32,15 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $email = $this->faker->unique()->safeEmail;
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'business_name' => $this->faker->company,
+            'logo_path' => $this->gravatar($email),
+            'email' => $email,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'package_id' => '1',
         ];
     }
 
@@ -44,4 +57,6 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    
 }

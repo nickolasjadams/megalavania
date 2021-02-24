@@ -33,15 +33,16 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'business_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
         ]);
 
         Auth::login($user = User::create([
-            'name' => $request->name,
+            'business_name' => $request->business_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'package_id' => 1, // freemium package hardcoded by default
         ]));
 
         event(new Registered($user));

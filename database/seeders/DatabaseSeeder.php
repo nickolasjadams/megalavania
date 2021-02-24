@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use Carbon\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+
+        // Run all the seeders.
+        $this->call([
+            PackageSeeder::class,
+            UserSeeder::class,
+            CustomerSeeder::class,
+        ]);
     }
 }

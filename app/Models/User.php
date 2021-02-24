@@ -17,9 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'business_name',
         'email',
         'password',
+        'package_id',
     ];
 
     /**
@@ -30,6 +31,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'godmode',
     ];
 
     /**
@@ -40,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Return the selected brands associated with this user
+     * untested. A start to researching using models with bridge tables
+     * First I found this. https://stackoverflow.com/questions/34570242/using-relationships-in-laravel-eloquent-with-bridge-table
+     * Which led me to the latest version of the docs here. https://laravel.com/docs/8.x/eloquent-relationships#many-to-many-model-structure
+     */
+    public function selected_brands() {
+        return $this->belongsToMany(Brand::class);
+    }
 }

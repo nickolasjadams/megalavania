@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Package extends Model
 {
     use HasFactory;
-
-    // public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -17,18 +15,9 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
-        'customer_id',
+        'name',
+        'description',
         'price',
-        'deposit',
-        'paid',
-        'initial',
-        'comment',
-        'brand_id',
-        'stock_number',
-        'product_name',
-        'order_status_id',
+        'sms_included',
     ];
 }
-
-

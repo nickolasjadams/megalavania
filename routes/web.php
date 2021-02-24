@@ -18,8 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::resource('/dashboard/orders', 'OrderController');
-
 Route::get('/dashboard/orders', 
 	[OrderController::class, 'index']
 )->middleware(['auth'])->name('orders');

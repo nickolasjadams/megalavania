@@ -19,7 +19,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-5">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <style>
+                    <!-- <style>
                         table {
                             width: 100%;
                         }
@@ -35,13 +35,13 @@
                             <th>Customer Name</th>
                             <th>Combo Meal Number</th>
                         </tr>
-                    @foreach ($allOrders as $order)
+                        @foreach ($allOrders as $order)
                         <tr>
                             <td>{{ $order->name }}</td>
                             <td>{{ $order->meal_combo_number }}</td>
                         </tr>
-                    @endforeach
-                    </table>
+                        @endforeach
+                    </table> -->
 
 
 
