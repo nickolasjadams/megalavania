@@ -1,0 +1,48 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateOrdersTable extends Migration
+{
+
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->unsignedBigInteger('brand_id');
+            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->unsignedBigInteger('order_status_id');
+            $table->foreign('order_status_id')->references('id')->on('order_statuses');
+            $table->decimal('price', 9, 2);
+            $table->decimal('deposit', 9, 2)->nullable();
+            $table->timestamp('paid_at')->nullable();
+            $table->string('initial', 8);
+            $table->string('comment', 1000)->nullable();
+            $table->string('stock_number')->nullable();
+            $table->string('product_name')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('orders');
+    }
+}
