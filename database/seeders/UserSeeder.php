@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
     {
 
         // Nick and Darryl's admin users
-        $admins = ['nickolas.j.adams@gmail.com', 'todays.d.hero@gmail.com'];
+        $admins = ['nickolas.j.adams@gmail.com', 'darrylrhardin@gmail.com'];
         foreach($admins as $admin) {
             DB::table('users')->insert([
                 'business_name' => 'megalavania',
