@@ -37,10 +37,10 @@ class CreateOrdersTable extends Migration
             $table->string('product_name')->nullable();
             $table->boolean('mail_to')->default(true);
             $table->boolean('use_default_mail')->default(true); // if customer wants product sent somewhere other than to their home (if product isn't going to the store)
-            $table->string('street'); 
-            $table->string('suite');
-            $table->string('state');
-            $table->string('zip');
+            $table->string('street')->nullable(); 
+            $table->string('suite')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip')->nullable();
             $table->timestamps();
         });
     }

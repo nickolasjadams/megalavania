@@ -18,13 +18,13 @@ class CreateBusinessesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
-            $table->string('manager');
+            $table->string('manager')->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->string('street');
-            $table->string('suite');
-            $table->string('state');
-            $table->string('zip');
+            $table->string('street')->nullable();
+            $table->string('suite')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip')->nullable();
             $table->timestamps();
         });
     }
