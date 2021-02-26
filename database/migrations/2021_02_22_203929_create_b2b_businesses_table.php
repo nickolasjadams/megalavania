@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrandsSelectedTable extends Migration
+class CreateB2bBusinessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateBrandsSelectedTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands_selected', function (Blueprint $table) {
+        Schema::create('b2b_businesses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateBrandsSelectedTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands_selected');
+        Schema::dropIfExists('b2b_businesses');
     }
 }
