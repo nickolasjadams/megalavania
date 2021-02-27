@@ -41,18 +41,25 @@ class BrandController extends Controller
     {
 
         $name = $request->get('name');
-        $category_id = $request->get('category_id');
+        $categoryId = $request->get('category_id');
         
-        // if name is unique, add row to table
+        // check $categoryId to make sure it exists (add if it doesn't?)
+        // if categoryId doesn't exist, throw err and give user feedback
 
-        // check category_id to make sure it exists (add if it doesn't?)
+        // if name is unique
+        $isUniqueName = true; // probably want to call a function to check for unique name
 
+        // add new brand
+        if($isUniqueName)
+        {
+            Brand::create([
+                'name' => $name,
+                'category_id' => $categoryId
+            ]);
+        }
+        
         // update brand_user table with user id and brand id
-        
-        Brand::create([
-            'name' => $name,
-            'category_id' => $category_id
-        ]);
+        // BrandUser::store();?
 
           return redirect('/dashboard/brands');
     }
