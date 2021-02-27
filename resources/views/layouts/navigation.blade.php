@@ -24,6 +24,10 @@
                         Orders
                     </x-nav-link>
 
+                    <x-nav-link :href="route('brands')" :active="request()->routeIs('brands')">
+                        Brands
+                    </x-nav-link>
+
                     <x-nav-link :href="route('settings')" :active="request()->routeIs('settings')">
                         Settings
                     </x-nav-link>
