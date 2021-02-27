@@ -17,14 +17,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('id')->on('brands');
-            $table->unsignedBigInteger('order_status_id');
-            $table->foreign('order_status_id')->references('id')->on('order_statuses');
+            $table->string('ticket');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('b2b_business_id')->constrained();
+            $table->foreignId('customer_id')->constrained();
+            $table->foreignId('brand_id')->constrained();
+            $table->foreignId('order_status_id')->constrained();
             $table->decimal('price', 9, 2);
             $table->decimal('deposit', 9, 2)->nullable();
             $table->timestamp('paid_at')->nullable();
@@ -32,6 +30,12 @@ class CreateOrdersTable extends Migration
             $table->string('comment', 1000)->nullable();
             $table->string('stock_number')->nullable();
             $table->string('product_name')->nullable();
+            $table->boolean('mail_to')->default(false); // if customer wants the item mailed directly to them
+            $table->boolean('use_default_mail')->default(true); // if customer wants product sent somewhere other than to their home (if product isn't going to the store)
+            $table->string('street')->nullable(); // street and address fields below are only filled out if customer wants mail sent to different than on file mailing address without updating
+            $table->string('suite')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip')->nullable();
             $table->timestamps();
         });
     }
