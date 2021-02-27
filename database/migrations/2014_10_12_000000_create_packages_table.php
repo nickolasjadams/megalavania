@@ -18,7 +18,7 @@ class CreatePackagesTable extends Migration
             $table->string('name')->unique();
             $table->string('description');
             $table->decimal('price', 9, 2);
-            $table->boolean('sms_included')->default(false);
+            $table->boolean('has_sms')->default(false);
             $table->timestamps();
         });
     }
