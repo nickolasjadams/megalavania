@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('admin_password'); // used to access stripe billing portal
             $table->rememberToken();
             $table->string('logo_path')->nullable();
             $table->boolean('godmode')->default(false);
