@@ -23,7 +23,7 @@ class PackageSeeder extends Seeder
             'name' => 'freemium',
             'description' => 'free version',
             'price' => 0.00,
-            'sms_included' => false
+            'has_sms' => false
         ]);
 
         // standard
@@ -31,7 +31,7 @@ class PackageSeeder extends Seeder
             'name' => 'standard',
             'description' => 'standard version',
             'price' => 30.00,
-            'sms_included' => false
+            'has_sms' => false
         ]);
 
         // premium
@@ -39,7 +39,7 @@ class PackageSeeder extends Seeder
             'name' => 'premium',
             'description' => 'premium version',
             'price' => 40.00,
-            'sms_included' => true
+            'has_sms' => true
         ]);
     }
 }
