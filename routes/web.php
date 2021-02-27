@@ -1,7 +1,9 @@
 <?php
 
+use App\Facades\AuthX as Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,40 +16,52 @@ use App\Http\Controllers\OrderController;
 |
 */
 
+require __DIR__.'/auth.php';
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard/orders', 
+/**
+ * Route for HOME constant found in App/Providers/RouteServiceProvider
+ * Redirects to user's business slug after login.
+ */
+Route::get('/business', function() {
+	return redirect(Auth::slug());
+});
+
+Route::get('/{business_name_slug}',
+	[UserController::class, 'index']
+)->middleware(['auth', 'biz.auth'])->name('users');
+
+Route::get('/{business_name_slug}/orders', 
 	[OrderController::class, 'index']
-)->middleware(['auth'])->name('orders');
+)->middleware(['auth', 'biz.auth'])->name('orders');
 
 Route::get(
-	'/dashboard/orders/create',
+	'/{business_name_slug}/orders/create',
 	[OrderController::class, 'create']
-)->middleware(['auth'])->name('orders.create');
+)->middleware(['auth', 'biz.auth'])->name('orders.create');
 
 Route::post(
-	'/dashboard/orders',
+	'/{business_name_slug}/orders',
 	[OrderController::class, 'store']
-)->middleware(['auth'])->name('orders.store');
+)->middleware(['auth', 'biz.auth'])->name('orders.store');
 
 
 
 
-Route::get('/dashboard/settings', function () {
+Route::get('/{business_name_slug}/settings', function () {
     return view('settings');
-})->middleware(['auth'])->name('settings');
+})->middleware(['auth', 'biz.auth'])->name('settings');
 
 
 
-Route::get('/dashboard/form-editor', function () {
+Route::get('/{business_name_slug}/form-editor', function () {
     return view('form-editor');
-})->middleware(['auth'])->name('form-editor');
+})->middleware(['auth', 'biz.auth'])->name('form-editor');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+
+

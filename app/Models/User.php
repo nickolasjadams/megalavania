@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -18,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'business_name',
+        'slug',
         'email',
         'password',
         'package_id',
@@ -52,5 +54,44 @@ class User extends Authenticatable
      */
     public function selected_brands() {
         return $this->belongsToMany(Brand::class);
+    }
+
+    /**
+     * Return an indexed array of all business_name slugs.
+     */
+    public static function businessSlugs() {
+        $names = User::select(['business_name'])->get()->toArray();
+
+        $slugs = [];
+        foreach($names as $name) {
+            array_push($slugs, Str::slug($name['business_name']));
+        }
+        
+        return $slugs;
+        
+    }
+
+    /**
+     * Returns the user id for the business given the business slug.
+     */
+    public static function getIdFromSlug($business_slug) {
+        
+        $users = User::select(['id', 'slug'])->get()->pluck('id', 'slug');
+        if (isset($users[$business_slug])) {
+            return $users[$business_slug];
+        }
+
+    }
+
+    /**
+     * Returns the business name slug from the user id.
+     */
+    public static function getSlugFromId($user_id) {
+        $users = User::select(['id', 'slug'])->get()->pluck('slug', 'id');
+
+        if (isset($users[$user_id])) {
+            return $users[$user_id];
+        }
+
     }
 }
