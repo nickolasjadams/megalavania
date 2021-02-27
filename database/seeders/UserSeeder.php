@@ -21,12 +21,16 @@ class UserSeeder extends Seeder
     {
 
         // Nick and Darryl's admin users
-        $admins = ['nickolas.j.adams@gmail.com', 'darrylrhardin@gmail.com'];
-        foreach($admins as $admin) {
+        $admins = [
+            'nick' => 'nickolas.j.adams@gmail.com',
+            'darryl' => 'darrylrhardin@gmail.com'
+        ];
+        foreach($admins as $admin => $email) {
             DB::table('users')->insert([
-                'business_name' => 'megalavania',
+                'business_name' => $admin,
+                'slug' => Str::slug($admin),
                 'logo_path' => '/images/nothing.png',
-                'email' => $admin,
+                'email' => $email,
                 'email_verified_at' => now(),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'admin_password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

@@ -33,8 +33,10 @@ class UserFactory extends Factory
     public function definition()
     {
         $email = $this->faker->unique()->safeEmail;
+        $business_name = $this->faker->unique->company;
         return [
-            'business_name' => $this->faker->unique->company,
+            'business_name' => $business_name,
+            'slug' => Str::slug($business_name),
             'logo_path' => $this->gravatar($email),
             'email' => $email,
             'email_verified_at' => now(),
