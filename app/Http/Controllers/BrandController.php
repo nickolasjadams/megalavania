@@ -20,9 +20,7 @@ class BrandController extends Controller
         
         $brands = $this->getBrandsByCurrentUser();
 
-        return view('brands', [
-            'brands' => $brands
-        ]);
+        return view('brands', compact('brands'));
     }
 
     /**
