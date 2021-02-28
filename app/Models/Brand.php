@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Brand extends Model
 {
@@ -15,6 +16,12 @@ class Brand extends Model
      * @var array
      */
     protected $fillable = [
-        'brand_name',
+        'name',
+        'category_id',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

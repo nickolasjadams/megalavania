@@ -3,7 +3,11 @@
 use App\Facades\AuthX as Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+<<<<<<< HEAD
 use App\Http\Controllers\UserController;
+=======
+use App\Http\Controllers\BrandController;
+>>>>>>> 29f7dac92769bc1f1d5e84f827ede391cecf8aeb
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 /**
  * Route for HOME constant found in App/Providers/RouteServiceProvider
  * Redirects to user's business slug after login.
@@ -35,6 +40,14 @@ Route::get('/{business_name_slug}',
 )->middleware(['auth', 'biz.auth'])->name('users');
 
 Route::get('/{business_name_slug}/orders', 
+=======
+
+/**
+ * Routes for orders
+ */
+
+Route::get('/dashboard/orders', 
+>>>>>>> 29f7dac92769bc1f1d5e84f827ede391cecf8aeb
 	[OrderController::class, 'index']
 )->middleware(['auth', 'biz.auth'])->name('orders');
 
@@ -49,15 +62,37 @@ Route::post(
 )->middleware(['auth', 'biz.auth'])->name('orders.store');
 
 
+/**
+ * Routes for brands
+ */
+
+Route::get(
+	'/dashboard/brands', 
+	[BrandController::class, 'index']
+)->middleware(['auth'])->name('brands');
+
+Route::get(
+	'/dashboard/brands/create',
+	[BrandController::class, 'create']
+)->middleware(['auth'])->name('brands.create');
+
+Route::post(
+	'/dashboard/brands',
+	[BrandController::class, 'store']
+)->middleware(['auth'])->name('brands.store');
 
 
 Route::get('/{business_name_slug}/settings', function () {
     return view('settings');
 })->middleware(['auth', 'biz.auth'])->name('settings');
 
+<<<<<<< HEAD
 
 
 Route::get('/{business_name_slug}/form-editor', function () {
+=======
+Route::get('/dashboard/form-editor', function () {
+>>>>>>> 29f7dac92769bc1f1d5e84f827ede391cecf8aeb
     return view('form-editor');
 })->middleware(['auth', 'biz.auth'])->name('form-editor');
 
