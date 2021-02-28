@@ -94,4 +94,14 @@ class User extends Authenticatable
         }
 
     }
+
+    public function brands()
+    {
+        return $this->belongsToMany(Brand::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasManyThrough(Category::class, Brand::class);
+    }
 }

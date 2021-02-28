@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Models\User;
 
 class BrandController extends Controller
 {
@@ -16,9 +17,12 @@ class BrandController extends Controller
      */
     public function index()
     {
+        
         $brands = $this->getBrandsByCurrentUser();
 
-        return view('brands', compact('brands'));
+        return view('brands', [
+            'brands' => $brands
+        ]);
     }
 
     /**
@@ -72,7 +76,7 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -119,12 +123,11 @@ class BrandController extends Controller
 
     private function getBrandsByCurrentUser()
     {
-        return DB::table('brands')
-            ->join('categories', 'categories.id', '=', 'brands.category_id')    
-            ->join('brand_user', 'brand_user.brand_id', '=', 'brands.id')
-            ->select('brands.name as bName', 'categories.name as cName')
-            ->where('user_id', Auth::user()->id)
-            ->get();
+        return Brand::whereHas('users', function($query) {
+            $query->where('users.id', auth()->id());
+        })
+        ->with('category')
+        ->get();
     }
 
     /**

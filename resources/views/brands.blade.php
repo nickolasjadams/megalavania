@@ -37,15 +37,15 @@
                         </tr>
                         @foreach ($brands as $brand)
                         <tr>
-                            <td>{{ $brand->cName }}</td>
-                            <td>{{ $brand->bName }}</td>
-                            {{-- <td>
-                                @foreach ($brand->users as $user)
-                                    {{ $user->business_name }}, 
-                                @endforeach
-                            </td> --}}
+                            <td>{{ $brand->category->name }}</td>
+                            <td>{{ $brand->name }}</td>
+                        
                         </tr>
+                        
                         @endforeach
+                        <tr>
+                            
+                        <tr>
                     </table>
 
 

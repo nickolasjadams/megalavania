@@ -24,4 +24,14 @@ class Brand extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    /**
+     * Get the categories that owns the brand.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+   
 }

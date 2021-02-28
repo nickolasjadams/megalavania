@@ -19,4 +19,12 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * Get the brands for the blog post.
+     */
+    public function brands()
+    {
+        return $this->hasMany(Brand::class);
+    }
 }
