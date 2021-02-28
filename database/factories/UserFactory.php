@@ -35,12 +35,8 @@ class UserFactory extends Factory
         $email = $this->faker->unique()->safeEmail;
         $business_name = $this->faker->unique->company;
         return [
-<<<<<<< HEAD
             'business_name' => $business_name,
             'slug' => Str::slug($business_name),
-=======
-            'business_name' => $this->faker->unique->company,
->>>>>>> 29f7dac92769bc1f1d5e84f827ede391cecf8aeb
             'logo_path' => $this->gravatar($email),
             'email' => $email,
             'email_verified_at' => now(),
