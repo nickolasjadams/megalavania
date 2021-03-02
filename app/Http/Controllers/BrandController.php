@@ -49,7 +49,7 @@ class BrandController extends Controller
         // if categoryId doesn't exist, throw err and give user feedback
 
         // if name is unique
-        $isUniqueName = true; // probably want to call a function to check for unique name
+        $isUniqueName = true; // TODO probably want to call a function to check for unique name
 
         // add new brand
         if($isUniqueName)
