@@ -21,7 +21,7 @@ class Category extends Model
     ];
 
     /**
-     * Get the brands for the blog post.
+     * Get the brands for this cateogry.
      */
     public function brands()
     {
