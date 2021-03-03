@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -40,6 +41,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user = User::create([
             'business_name' => $request->business_name,
+            'slug' => $this::makeSlugUnique($request->business_name),
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'package_id' => 1, // freemium package hardcoded by default
@@ -48,5 +50,22 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * Convert proposed business_name to slug 
+     * and make sure it doesn't already exist.
+     */
+    public static function makeSlugUnique($business_name)
+    {
+        $proposed_slug = Str::slug($business_name);
+        $slug_exists = User::where('slug', '=', $proposed_slug)->exists();
+        $slug_appearences = 1;
+        while ($slug_exists) {
+            $proposed_slug .= '-' . $slug_appearences;
+            $slug_exists = User::where('slug', '=', $proposed_slug)->exists();
+            $slug_appearences++;
+        }
+        return $proposed_slug;
     }
 }

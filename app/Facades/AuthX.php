@@ -13,7 +13,7 @@ class AuthX extends Auth
 {
 
     /**
-     * Get the business name as a slug from the
+     * Get the business slug from the
      * current logged in user.
      * 
      * @return string business_name_slug
