@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class Category extends Model
 {
     use HasFactory;
+
+    // public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -16,21 +18,13 @@ class Brand extends Model
      */
     protected $fillable = [
         'name',
-        'category_id',
     ];
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
-
     /**
-     * Get the categories that owns the brand.
+     * Get the brands for this cateogry.
      */
-    public function category()
+    public function brands()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Brand::class);
     }
-
-   
 }

@@ -4,6 +4,7 @@ use App\Facades\AuthX as Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,24 @@ Route::post(
 )->middleware(['auth', 'biz.auth'])->name('orders.store');
 
 
+/**
+ * Routes for brands
+ */
+
+Route::get(
+	'/dashboard/brands', 
+	[BrandController::class, 'index']
+)->middleware(['auth'])->name('brands');
+
+Route::get(
+	'/dashboard/brands/create',
+	[BrandController::class, 'create']
+)->middleware(['auth'])->name('brands.create');
+
+Route::post(
+	'/dashboard/brands',
+	[BrandController::class, 'store']
+)->middleware(['auth'])->name('brands.store');
 
 
 Route::get('/{business_name_slug}/settings', function () {
