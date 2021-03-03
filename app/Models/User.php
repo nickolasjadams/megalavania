@@ -47,16 +47,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Return the selected brands associated with this user
-     * untested. A start to researching using models with bridge tables
-     * First I found this. https://stackoverflow.com/questions/34570242/using-relationships-in-laravel-eloquent-with-bridge-table
-     * Which led me to the latest version of the docs here. https://laravel.com/docs/8.x/eloquent-relationships#many-to-many-model-structure
-     */
-    public function selected_brands() {
-        return $this->belongsToMany(Brand::class);
-    }
-
-    /**
      * Return an indexed array of all business_name slugs.
      */
     public static function businessSlugs() {
@@ -75,31 +65,29 @@ class User extends Authenticatable
      * Returns the user id for the business given the business slug.
      */
     public static function getIdFromSlug($business_slug) {
-        
-        $users = User::select(['id', 'slug'])->get()->pluck('id', 'slug');
-        if (isset($users[$business_slug])) {
-            return $users[$business_slug];
-        }
-
+        $user = User::where('slug', '=', $business_slug)->first();
+        return $user->id;
     }
 
     /**
      * Returns the business name slug from the user id.
      */
     public static function getSlugFromId($user_id) {
-        $users = User::select(['id', 'slug'])->get()->pluck('slug', 'id');
-
-        if (isset($users[$user_id])) {
-            return $users[$user_id];
-        }
-
+        $user = User::where('id', '=', $user_id)->first();
+        return $user->slug;
     }
 
+    /**
+     * Return the selected brands.
+     */
     public function brands()
     {
         return $this->belongsToMany(Brand::class);
     }
 
+    /**
+     * Return the associated categories.
+     */
     public function categories()
     {
         return $this->hasManyThrough(Category::class, Brand::class);
