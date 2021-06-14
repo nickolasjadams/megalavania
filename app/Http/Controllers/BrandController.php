@@ -64,6 +64,7 @@ class BrandController extends Controller
 
         // find brand
         $brand = Brand::where('name', $name)
+        ->where($categoryId, 'category_id')
         ->first();
 
         // add new brand if doesn't exist
