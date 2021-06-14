@@ -25,4 +25,9 @@ class B2bBusiness extends Model
         'state',
         'zip',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -56,9 +56,9 @@ class User extends Authenticatable
         foreach($names as $name) {
             array_push($slugs, Str::slug($name['business_name']));
         }
-        
+
         return $slugs;
-        
+
     }
 
     /**
@@ -82,7 +82,7 @@ class User extends Authenticatable
      */
     public function brands()
     {
-        return $this->belongsToMany(Brand::class);
+        return $this->belongsToMany(Brand::class, 'brand_user');
     }
 
     /**
