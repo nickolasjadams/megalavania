@@ -1,23 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             Your Brands
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="brands/create"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                        + New Order
+                    <a href="brands/create"><button class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700">
+                        + New Brand
                     </button></a>
                 </div>
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-5">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto mt-5 max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <style>
                         table {
@@ -39,18 +39,18 @@
                         <tr>
                             <td>{{ $brand->category->name }}</td>
                             <td>{{ $brand->name }}</td>
-                        
+
                         </tr>
-                        
+
                         @endforeach
                         <tr>
-                            
+
                         <tr>
                     </table>
 
 
 
-                    
+
                 </div>
             </div>
         </div>

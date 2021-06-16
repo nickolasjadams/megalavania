@@ -23,7 +23,7 @@ class B2bBusinessFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
+            'user_id' => User::factory(),
             'name' => $this->faker->company,
             'manager' => $this->faker->name(),
             'phone' => preg_replace('/[^\d]/', '', $this->faker->phoneNumber),

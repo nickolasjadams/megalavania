@@ -19,12 +19,17 @@ class DatabaseSeeder extends Seeder
         // Run all the seeders.
         $this->call([
             PackageSeeder::class,
-            UserSeeder::class,
-            B2bBusinessSeeder::class,
-            CustomerSeeder::class,
             CategorySeeder::class,
-            BrandSeeder::class,
+            OrderSeeder::class,
             BrandUserSeeder::class,
+            // UserSeeder::class,
+            // B2bBusinessSeeder::class,
+            // CustomerSeeder::class,
+
+            // BrandSeeder::class,
+
+            // OrderStatusSeeder::class,
+
         ]);
     }
 }

@@ -80,6 +80,7 @@ class BrandController extends Controller
 
         //not sure if there is a better way to do this?
         $user = User::find(auth()->id());
+
         if(BrandUser::checkRecordExists($user->id, $brand->id))
         {
             dd('return record exists notification');

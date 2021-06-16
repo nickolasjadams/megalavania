@@ -52,7 +52,7 @@ class OrderController extends Controller
           'deserves_spit' => $request->get('deserves_spit')
         ]);
 
-        return redirect('/dashboard/orders');
+        return redirect('/dashboard/order-create');
 
     }
 
