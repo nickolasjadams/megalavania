@@ -12,34 +12,34 @@ class PackageSeeder extends Seeder
      * - freemium : Visual access. Can modify workflow. Can't create orders.
      * - standard : Can create orders. Lacks premium features.
      * - premium : can send sms alerts to customers.
-     * 
+     *
      * @return void
      */
     public function run()
     {
-        
-        // freemium
-        DB::table('packages')->insert([
-            'name' => 'freemium',
-            'description' => 'free version',
-            'price' => 0.00,
-            'has_sms' => false
-        ]);
 
-        // standard
-        DB::table('packages')->insert([
-            'name' => 'standard',
-            'description' => 'standard version',
-            'price' => 30.00,
-            'has_sms' => false
-        ]);
+        // // freemium
+        // DB::table('packages')->insert([
+        //     'name' => 'freemium',
+        //     'description' => 'free version',
+        //     'price' => 0.00,
+        //     'has_sms' => false
+        // ]);
 
-        // premium
-        DB::table('packages')->insert([
-            'name' => 'premium',
-            'description' => 'premium version',
-            'price' => 40.00,
-            'has_sms' => true
-        ]);
+        // // standard
+        // DB::table('packages')->insert([
+        //     'name' => 'standard',
+        //     'description' => 'standard version',
+        //     'price' => 30.00,
+        //     'has_sms' => false
+        // ]);
+
+        // // premium
+        // DB::table('packages')->insert([
+        //     'name' => 'premium',
+        //     'description' => 'premium version',
+        //     'price' => 40.00,
+        //     'has_sms' => true
+        // ]);
     }
 }

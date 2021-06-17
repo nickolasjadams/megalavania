@@ -27,4 +27,9 @@ class Category extends Model
     {
         return $this->hasMany(Brand::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'category_user');
+    }
 }

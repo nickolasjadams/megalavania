@@ -56,9 +56,9 @@ class User extends Authenticatable
         foreach($names as $name) {
             array_push($slugs, Str::slug($name['business_name']));
         }
-        
+
         return $slugs;
-        
+
     }
 
     /**
@@ -82,7 +82,7 @@ class User extends Authenticatable
      */
     public function brands()
     {
-        return $this->belongsToMany(Brand::class);
+        return $this->belongsToMany(Brand::class, 'brand_user');
     }
 
     /**
@@ -90,6 +90,16 @@ class User extends Authenticatable
      */
     public function categories()
     {
-        return $this->hasManyThrough(Category::class, Brand::class);
+        return $this->belongsToMany(Category::class, 'category_user');
+    }
+
+    public function b2bBusinesses()
+    {
+        return $this->hasMany(B2bBusiness::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

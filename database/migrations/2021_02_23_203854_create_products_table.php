@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrandUserTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateBrandUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('brand_user', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('brand_id')->constrained();
-            // $table->timestamps();
+            $table->string('name')->nullable();
+            $table->string('stock_number')->nullable();
+            $table->longText('sizes')->nullable();
+            $table->boolean('allow_suggest')->default(false);
+            $table->timestamps();
         });
     }
 
@@ -28,6 +32,6 @@ class CreateBrandUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brand_user');
+        Schema::dropIfExists('products');
     }
 }

@@ -19,4 +19,10 @@ class OrderStatus extends Model
         'status_name',
         'status_position',
     ];
+
+    public function user()
+    {
+       return $this->belongsTo(User::class);
+    }
+
 }

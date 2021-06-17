@@ -1,51 +1,59 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             Orders
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="orders/create"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    <a href="orders/create"><button class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700">
                         + New Order
                     </button></a>
                 </div>
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-5">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto mt-5 max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <!-- <style>
-                        table {
-                            width: 100%;
-                        }
-                        td, th {
-                            border: 2px solid #e9e9e9;
-                            padding: 5px 10px;
-                        }
-                    </style>
 
-
-                    <table>
-                        <tr>
-                            <th>Customer Name</th>
-                            <th>Combo Meal Number</th>
-                        </tr>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope='col'>Ticket</th>
+                                <th scope='col'>Customer Name</th>
+                                <th scope='col'>Brand</th>
+                                <th scope='col'>Stock Number</th>
+                                <th scope='col'>Product Name</th>
+                                <th scope='col'>Order Status</th>
+                                <th scope='col'>Price</th>
+                                <th scope='col'>Deposit</th>
+                                <th scope='col'>Paid</th>
+                                <th scope='col'>Initials</th>
+                                <th scope='col'>Comment</th>
+                            </tr>
+                        </thead>
                         @foreach ($allOrders as $order)
                         <tr>
-                            <td>{{ $order->name }}</td>
-                            <td>{{ $order->meal_combo_number }}</td>
+                            <td>{{ $order->ticket }}</td>
+                            <td>{{ $order->customer->first_name }}</td>
+                            <td>{{ $order->brand->name }}</td>
+                            <td>{{ $order->stock_number }}</td> <!-- stock number should have own table for product? -->
+                            <td>{{ $order->product_name }}</td> <!-- ssame with product name? -->
+                            <td>{{ $order->orderStatus->name }}</td>
+                            <td>{{ $order->price }}</td>
+                            <td>{{ $order->deposit }}</td>
+                            <td>{{ $order->paid_at }}</td>
+                            <td>{{ $order->initial }}</td>
+                            <td>{{ Str::of($order->comment)->limit(50) }}</td>
+
                         </tr>
                         @endforeach
-                    </table> -->
+                    </table>
 
-
-
-                    
                 </div>
             </div>
         </div>
