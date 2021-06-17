@@ -26,7 +26,6 @@ class CreateUsersTable extends Migration
             $table->string('logo_path')->nullable();
             $table->boolean('godmode')->default(false);
             $table->foreignId('package_id')->constrained();
-            $table->string('category_ids')->nullable(); // list of all brand category IDs a business uses (Shoes, Tools, Sports, etc) from the categories table
             $table->timestamps();
         });
 

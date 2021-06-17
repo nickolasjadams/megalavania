@@ -90,6 +90,16 @@ class User extends Authenticatable
      */
     public function categories()
     {
-        return $this->hasManyThrough(Category::class, Brand::class);
+        return $this->belongsToMany(Category::class, 'category_user');
+    }
+
+    public function b2bBusinesses()
+    {
+        return $this->hasMany(B2bBusiness::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

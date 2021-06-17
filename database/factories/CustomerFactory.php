@@ -26,13 +26,9 @@ class CustomerFactory extends Factory
         return [
             'user_id' => User::all()->random()->id,
             'b2b_business_id' => B2bBusiness::all()->random()->id,
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
+            'name' => $this->faker->firstName. ' '. $this->faker->lastName,
             'phone' => preg_replace('/[^\d]/', '', $this->faker->phoneNumber),
             'email' => $this->faker->unique()->safeEmail,
-            'street' => $this->faker->streetAddress,
-            'state' => $this->faker->state,
-            'zip' => $this->faker->postcode,
             'wants_sms' => $this->faker->boolean(50),
         ];
     }

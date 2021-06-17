@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         // Run all the seeders.
         $this->call([
             PackageSeeder::class,
-            CategorySeeder::class,
+            // CategorySeeder::class,
             OrderSeeder::class,
             BrandUserSeeder::class,
             // UserSeeder::class,

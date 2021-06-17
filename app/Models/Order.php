@@ -29,6 +29,27 @@ class Order extends Model
         'product_name',
         'order_status_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function orderStatus()
+    {
+        return $this->belongsTo(OrderStatus::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
 }
 
 
