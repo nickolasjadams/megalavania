@@ -31,9 +31,8 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
-        // UNFINISHED. PARENT TABLE DATA NEEDS TO BE BUILT FIRST.
-        // THE SEEDER WILL REFERENCE PARENT TABLE MODELS, SO THE DATA MUST BE GENERATED BEFORE THIS TABLE.
-        // STILL NEED BRAND_ID AND ORDER_STATUS_ID.
+
+
         $user = User::factory()->create();
         $category = Category::factory()->create();
         $brand = Brand::factory()->create();
@@ -55,7 +54,6 @@ class OrderFactory extends Factory
         $price = $this->faker->numberBetween(10, 200);
         $status = $this->faker->numberBetween(1, 4);
         $customer = Customer::factory()->create([
-            'user_id' => $user,
             'b2b_business_id' => $b2bBusiness
         ]);
         Address::factory()->create([
@@ -66,10 +64,9 @@ class OrderFactory extends Factory
             'user_id' => $user,
             'customer_id' => $customer,
             'b2b_business_id' => $b2bBusiness,
-            'product_id' => $product,
             'ticket' => $this->faker->numerify('####'),
             'price' => $price,
-            'deposit' => (random_int(0,1)) ? ($price / 2) : NULL,
+            'deposit' => (random_int(0,1)) ? ($price / 2) : 0,
             'paid_at' => null,
             'initial' => $this->faker->regexify('[A-Za-z0-9]{3}'),
             'comment' => $this->faker->realText(250),

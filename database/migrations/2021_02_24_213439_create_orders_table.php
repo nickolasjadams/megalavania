@@ -21,11 +21,10 @@ class CreateOrdersTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('b2b_business_id')->constrained();
             $table->foreignId('customer_id')->constrained();
-            $table->foreignId('product_id')->constrained();
             $table->foreignId('order_status_id')->constrained();
             $table->string('size')->nullable();
             $table->decimal('price', 9, 2);
-            $table->decimal('deposit', 9, 2)->nullable();
+            $table->decimal('deposit', 9, 2)->default(0);
             $table->timestamp('paid_at')->nullable();
             $table->string('initial', 8);
             $table->string('comment', 1000)->nullable();

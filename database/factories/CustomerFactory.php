@@ -24,7 +24,6 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
             'b2b_business_id' => B2bBusiness::all()->random()->id,
             'name' => $this->faker->firstName. ' '. $this->faker->lastName,
             'phone' => preg_replace('/[^\d]/', '', $this->faker->phoneNumber),

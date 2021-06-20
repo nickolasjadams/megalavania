@@ -24,7 +24,7 @@ class Order extends Model
         'paid',
         'initial',
         'comment',
-        'brand_id',
+        'product_id',
         'stock_number',
         'product_name',
         'order_status_id',
@@ -45,9 +45,9 @@ class Order extends Model
         return $this->belongsTo(OrderStatus::class);
     }
 
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsToMany(Product::class);
     }
 
 }
