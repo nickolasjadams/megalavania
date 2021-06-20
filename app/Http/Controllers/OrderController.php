@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = \App\Models\Order::with('user', 'brand', 'customer')
+        $orders = \App\Models\Order::with('user', 'product', 'customer')
         ->get();
 
         return view('orders', [

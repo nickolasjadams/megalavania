@@ -24,7 +24,7 @@ class Order extends Model
         'paid',
         'initial',
         'comment',
-        'brand_id',
+        'product_id',
         'stock_number',
         'product_name',
         'order_status_id',

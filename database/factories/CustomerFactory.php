@@ -23,6 +23,7 @@ class CustomerFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'user_id' => User::all()->random()->id,
             'b2b_business_id' => B2bBusiness::all()->random()->id,

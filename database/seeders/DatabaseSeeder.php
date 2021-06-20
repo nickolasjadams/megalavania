@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Customer;
 use Carbon\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             // CategorySeeder::class,
             OrderSeeder::class,
             BrandUserSeeder::class,
+            CustomerSeeder::class,
             // UserSeeder::class,
             // B2bBusinessSeeder::class,
             // CustomerSeeder::class,

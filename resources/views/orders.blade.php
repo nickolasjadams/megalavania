@@ -39,10 +39,10 @@
                         @foreach ($allOrders as $order)
                         <tr>
                             <td>{{ $order->ticket }}</td>
-                            <td>{{ $order->customer->first_name }}</td>
-                            <td>{{ $order->brand->name }}</td>
-                            <td>{{ $order->stock_number }}</td> <!-- stock number should have own table for product? -->
-                            <td>{{ $order->product_name }}</td> <!-- ssame with product name? -->
+                            <td>{{ $order->customer->name }}</td>
+                            <td>{{ $order->product->brand->name }}</td>
+                            <td>{{ $order->product->stock_number }}</td> <!-- stock number should have own table for product? -->
+                            <td>{{ $order->product->name }}</td> <!-- ssame with product name? -->
                             <td>{{ $order->orderStatus->name }}</td>
                             <td>{{ $order->price }}</td>
                             <td>{{ $order->deposit }}</td>
