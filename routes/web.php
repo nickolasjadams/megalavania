@@ -35,7 +35,7 @@ Route::get('/{business_name_slug}',
 	[UserController::class, 'index']
 )->middleware(['auth', 'biz.auth'])->name('users');
 
-Route::get('/{business_name_slug}/orders', 
+Route::get('/{business_name_slug}/orders',
 	[OrderController::class, 'index']
 )->middleware(['auth', 'biz.auth'])->name('orders');
 
@@ -55,17 +55,17 @@ Route::post(
  */
 
 Route::get(
-	'/dashboard/brands', 
+	'/{business_name_slug}/brands',
 	[BrandController::class, 'index']
 )->middleware(['auth'])->name('brands');
 
 Route::get(
-	'/dashboard/brands/create',
+	'/{business_name_slug}/brands/create',
 	[BrandController::class, 'create']
 )->middleware(['auth'])->name('brands.create');
 
 Route::post(
-	'/dashboard/brands',
+	'/{business_name_slug}/brands',
 	[BrandController::class, 'store']
 )->middleware(['auth'])->name('brands.store');
 

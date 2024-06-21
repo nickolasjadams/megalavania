@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class OrderController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = \App\Models\Order::with('user', 'customer')
-        ->where('user_id', auth()->id())
-        ->get();
-
-        return view('orders', [
-            'allOrders' => $orders
-        ]);
+        //
     }
 
     /**
@@ -30,7 +24,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order-create');
+        //
     }
 
     /**
@@ -41,30 +35,16 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
-        $lastFour = substr($request->post('ssn'), -4);
-        $ssn = Hash::make($lastFour);
-
-
-        \App\Models\Order::create([
-          'meal_combo_number' => $request->get('meal_combo_number'),
-          'size' => $request->get('size'),
-          'name' => $request->get('name'),
-          'ssn' => $ssn,
-          'deserves_spit' => $request->get('deserves_spit')
-        ]);
-
-        return redirect('/dashboard/order-create');
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Products $products)
     {
         //
     }
@@ -72,10 +52,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Products $products)
     {
         //
     }
@@ -84,10 +64,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Products $products)
     {
         //
     }
@@ -95,10 +75,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Products $products)
     {
         //
     }

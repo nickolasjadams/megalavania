@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class B2bBusiness extends Model
+class CategoryUser extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'category_user';
 
     /**
      * The attributes that are mass assignable.
@@ -16,18 +18,16 @@ class B2bBusiness extends Model
      */
     protected $fillable = [
         'user_id',
-        'name',
-        'manager',
-        'phone',
-        'email',
-        'street',
-        'suite',
-        'state',
-        'zip',
+        'category_id',
     ];
 
-    public function user()
+    public function categories()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Category::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }

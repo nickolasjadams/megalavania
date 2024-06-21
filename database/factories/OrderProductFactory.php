@@ -2,19 +2,21 @@
 
 namespace Database\Factories;
 
-use App\Models\Brand;
-use App\Models\BrandUser;
-use App\Models\User;
+
+use App\Models\OrderProduct;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BrandUserFactory extends Factory
+
+class OrderProductFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = BrandUser::class;
+    protected $model = OrderProduct::class;
 
     /**
      * Define the model's default state.
@@ -24,8 +26,8 @@ class BrandUserFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
-            'brand_id' => Brand::all()->random()->id,
+            'order_id' => Order::all()->random()->id,
+            'product_id' => Product::all()->random()->id,
         ];
     }
 }

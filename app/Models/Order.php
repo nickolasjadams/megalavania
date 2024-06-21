@@ -24,11 +24,32 @@ class Order extends Model
         'paid',
         'initial',
         'comment',
-        'brand_id',
+        'product_id',
         'stock_number',
         'product_name',
         'order_status_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function orderStatus()
+    {
+        return $this->belongsTo(OrderStatus::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
 }
 
 

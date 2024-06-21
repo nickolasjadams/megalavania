@@ -21,7 +21,7 @@ class Brand extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'brand_user');
     }
 
     /**
@@ -32,5 +32,8 @@ class Brand extends Model
         return $this->belongsTo(Category::class);
     }
 
-   
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

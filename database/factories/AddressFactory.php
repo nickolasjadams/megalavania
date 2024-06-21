@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\B2bBusiness;
-use App\Models\User;
+use App\Models\Address;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class B2bBusinessFactory extends Factory
+class AddressFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = B2bBusiness::class;
+    protected $model = Address::class;
 
     /**
      * Define the model's default state.
@@ -23,14 +23,12 @@ class B2bBusinessFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
-            'name' => $this->faker->company,
-            'manager' => $this->faker->name(),
-            'phone' => preg_replace('/[^\d]/', '', $this->faker->phoneNumber),
-            'email' => $this->faker->unique()->safeEmail,
+            'customer_id' => Customer::all()->random()->id,
             'street' => $this->faker->streetAddress,
+            'suite' => $this->faker->secondaryAddress,
             'state' => $this->faker->state,
             'zip' => $this->faker->postcode,
+            'default' => false
         ];
     }
 }
